@@ -52,7 +52,7 @@ export default class GotService {
     }
   } 
 
-  _transformCharacter(char) {
+  _transformCharacter = (char) => {
     return {
       name: this.isSet(char.name),
       gender: this.isSet(char.gender),
@@ -62,7 +62,7 @@ export default class GotService {
     }
   }
 
-  _transformHouse(house) {
+  _transformHouse = (house) => {
     return {
       name: this.isSet(house.name),
       region: this.isSet(house.region),
@@ -73,7 +73,7 @@ export default class GotService {
     }
   }
 
-  _transformBook(book) {
+  _transformBook = (book) => {
     return {
       name: this.isSet(book.name),
       numberOfPages: this.isSet(book.numberOfPages),
