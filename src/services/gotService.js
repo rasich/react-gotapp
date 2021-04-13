@@ -58,7 +58,8 @@ export default class GotService {
       gender: this.isSet(char.gender),
       born: this.isSet(char.born),
       died: this.isSet(char.died),
-      culture: this.isSet(char.culture)
+      culture: this.isSet(char.culture),
+      url: char.url
     }
   }
 
