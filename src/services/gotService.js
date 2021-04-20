@@ -4,7 +4,7 @@ export default class GotService {
     this._apiBase = 'https://www.anapioficeandfire.com/api/';
   }
 
-  async getResponse(url) {
+  getResponse = async (url) => {
     const res = await fetch(`${this._apiBase}${url}`);
 
     if (!res.ok) {
@@ -14,32 +14,32 @@ export default class GotService {
     return await res.json();
   }
 
-  async getAllCharacters() {
+  getAllCharacters = async () => {
     const res = await this.getResponse('characters?page=5&pageSize=10');
     return res.map(this._transformCharacter);
   }
   
-  async getCharacter(id) {
+  getCharacter = async (id) => {
     const character = await this.getResponse(`characters/${id}`);
     return this._transformCharacter(character);
   }
 
-  async getAllHouses() {
+  getAllHouses = async () => {
     const res = await this.getResponse('houses');
     return res.map(this._transformHouse);
   }
   
-  async getHouse(id) {
+  getHouse = async (id) => {
     const house = await this.getResponse(`houses/${id}`);
     return this._transformHouse(house);
   }
 
-  async getAllBooks() {
+  getAllBooks = async () => {
     const res = await this.getResponse('books');
     return res.map(this._transformBook);
   }
   
-  async getBook(id) {
+  getBook = async (id) => {
     const book = await this.getResponse(`books/${id}`);
     return this._transformBook(book);
   }
@@ -50,7 +50,11 @@ export default class GotService {
     } else {
       return 'no data'
     }
-  } 
+  }
+
+  generationId(url) {
+    return url.replace(/\D/ig, '')
+  }
 
   _transformCharacter = (char) => {
     return {
@@ -59,7 +63,8 @@ export default class GotService {
       born: this.isSet(char.born),
       died: this.isSet(char.died),
       culture: this.isSet(char.culture),
-      url: char.url
+      url: char.url,
+      id: this.generationId(char.url)
     }
   }
 
@@ -71,6 +76,8 @@ export default class GotService {
       titles: this.isSet(house.titles),
       overlord: this.isSet(house.overlord),
       ancestralWeapons: this.isSet(house.ancestralWeapons),
+      url: house.url,
+      id: this.generationId(house.url)
     }
   }
 
@@ -78,8 +85,10 @@ export default class GotService {
     return {
       name: this.isSet(book.name),
       numberOfPages: this.isSet(book.numberOfPages),
-      publiser: this.isSet(book.publiser),
-      released: this.isSet(book.released)
+      publisher: this.isSet(book.publisher),
+      released: this.isSet(book.released),
+      url: book.url,
+      id: this.generationId(book.url)
     }
   }
 }

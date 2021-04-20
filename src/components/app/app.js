@@ -3,7 +3,12 @@ import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
 import ErrorMessage from '../errorMessage';
-import CharacterPage from '../characterPage';
+import CharacterPage from '../pages/characterPage';
+import BooksPage from '../pages/booksPage';
+import HousesPage from '../pages/housesPage';
+
+import GotService from '../../services/gotService';
+
 
 import './app.css';
 
@@ -52,7 +57,13 @@ export default class App extends Component {
                 </button>
             </Col>
           </Row>
+
           <CharacterPage/>
+          <br/>
+          <BooksPage/>
+          <br/>
+          <HousesPage/>
+
         </Container>
       </>
     );
