@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import ItemList from '../../itemList';
-import ItemDetails, {Field} from '../../itemDetails';
-import ErrorMessage from '../../errorMessage';
-import GotService from '../../../services/gotService';
-import RowBlock from '../../rowBlock';
+import ItemList from '../itemList';
+import ItemDetails, {Field} from '../itemDetails';
+import ErrorMessage from '../errorMessage';
+import GotService from '../../services/gotService';
+import RowBlock from '../rowBlock';
 
-export default class BooksPage extends Component {
+export default class HousesPage extends Component {
 
   gotService = new GotService();
 
@@ -35,7 +35,7 @@ export default class BooksPage extends Component {
     const itemList = (
       <ItemList 
         onItemSelected={this.onItemSelected}
-        getData={this.gotService.getAllBooks}
+        getData={this.gotService.getAllHouses}
         renderItem={(item) => item.name}
       />
     )
@@ -43,11 +43,13 @@ export default class BooksPage extends Component {
     const itemDetails = (
       <ItemDetails 
         itemId={this.state.selectedItem}
-        getData={this.gotService.getBook}
+        getData={this.gotService.getHouse}
       >
-        <Field field='numberOfPages' label='Number of pages'/>
-        <Field field='publisher' label='Publisher'/>
-        <Field field='released' label='Released'/>
+        <Field field='region' label='Region'/>
+        <Field field='words' label='Words'/>
+        <Field field='titles' label='Titles'/>
+        <Field field='overlord' label='Overlord'/>
+        <Field field='ancestralWeapons' label='Ancestral weapons'/>
       </ItemDetails>
     )
     
